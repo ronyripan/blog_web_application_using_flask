@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head%} 
+<title> allposts </title>
+{%endblock%}
+
+{% block body%} 
+<br>
+<dib>
+    <h1 style="display:inline"> allposts </h1>
+    <a style="display:inline" class="btn btn-success float-right" href="/newpost"> +New Post</a>
+</dib>
+
+<hr>
+{%for post in Posts%}
+    <h2>{{ post.title}}  </h2>
+    {% if post.author %}
+        <small> Written by : {{post.author}} on Date : {{post.date_posted}}</small>
+    {% else %}
+        <small> Written by : Anonymous on Date : {{post.date_posted}} </small>
+    {% endif %}
+    <p style="white-space: pre-wrap;">{{ post.content}}  </p>
+    <a class = "btn btn-danger" href = '/allposts/delete/{{post.id}}'>Delete</a>
+    <a class = "btn btn-primary" href = '/allposts/edit/{{post.id}}'>Edit</a>
+    <hr>
+{%endfor%}
+
+{%endblock%}
